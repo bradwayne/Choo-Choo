@@ -1,0 +1,42 @@
+
+body {
+    background-size: 500px;
+}
+
+h1 {
+    text-align: center;
+/*    font-family: 'Ranchers', cursive; */ 
+    font-family: 'Shrikhand', cursive; 
+    font-size: 125px;
+}
+
+#button-view {
+    margin-bottom: 25px;
+}
+
+#gifs-here {
+	object-position: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.floatLeft {
+    float: left;
+    margin: 30px;
+}
+
+.header {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    background-color: #ccc;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 70px;
+}
+
