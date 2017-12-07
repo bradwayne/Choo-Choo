@@ -5,7 +5,7 @@
           var database;
 
 
-// firebase api key
+          // firebase api key
           var config = {
               apiKey: "AIzaSyC16dFr-JCQ5HpTL2ndW6bPjPQpArYt_vo",
               authDomain: "bws-anytime-train.firebaseapp.com",
@@ -15,43 +15,38 @@
               messagingSenderId: "77875475122"
           };
 
-//firebase initalizer
+          //firebase initalizer
           firebase.initializeApp(config);
 
 
           var database = firebase.database();
 
-// add train on click fuction
+          // add train on click fuction
           $("#add-loco").on("click", function() {
-// do not clear entry
+              // do not clear entry
               event.preventDefault();
 
-// take in input form user and remove extra spacing
+              // take in input form user and remove extra spacing
               var train = $("#train-input").val().trim();
               var destination = $("#destination-input").val().trim();
               var nextTrain = $("#nextTrain-input").val().trim();
               var frequency = $("#frequency-input").val().trim();
 
-// variables for train fields
+              // variables for train fields
               var newTrain = {
-                  trainName: train,
-                  trainDestination: destination,
-                  trainNextTrain: nextTrain,
-                  trainFrequency: frequency
+                  train: trainName,
+                  destination: trainDestination,
+                  nextTrain: trainNextTrain,
+                  frequency: trainFrequency
               };
 
-// push fields into form table
+              // push fields into form table
               database.ref().push(newTrain);
 
-              console.log(newTrain.trainName);
-              console.log(newTrain.trainDestination);
-              console.log(newTrain.trainNextTrain);
-              console.log(newTrain.trainFrequency);
-
-// alert after submit train info
+              // alert after submit train info
               alert("Next Train Now In Route");
 
-// clear form field
+              // clear form field
               $("#train-input").val("");
               $("#destination-input").val("");
               $("#nextTrain-input").val("");
@@ -59,23 +54,27 @@
 
           });
 
-// variable for firebase input
-          database.ref().on("value", function(snapshot) {
-              console.log(snapshot.val());
+          // creat firebase event for adding train to database and a row in html
+          database.ref().on("child_added", function(snapshot) {
 
-            var UpdateHtml = {
-              train: snapshot.val().trainName,
-              destination: snapshot.val().trainDestination,
-              nextTrain: snapshot.val().trainNextTrain,
-              frequency: snapshot.val().trainFrequency,
-          }
+              var train = snapshot.val().trainName;
+              var destination = snapshot.val().trainDestination;
+              var nextTrain = snapshot.val().trainNextTrain;
+              var frequency = snapshot.val().trainFrequency;
+
+              console.log(train);
+              console.log(destination);
+              console.log(nextTrain);
+              console.log(frequency);
+
 
           });
 
       }
 
+      function UpdateHtml(train, destination, frequency, nextTrain) {
 
-      function UpdateHtml(trian, destination, frequency, nextTrain) {
+
 
           var row;
           var train;
@@ -131,7 +130,7 @@
           return minsOut;
       }
 
-  runProgram();
+      runProgram();
 
 
   });
